@@ -15,7 +15,7 @@ export interface PortfolioPerformance {
  * @param currentValue - The current value of the portfolio
  * @returns An object containing profit/loss, percentage change, and a performance summary
  */
-export function calculatePortfolioPerformance(initialInvestment: number, currentValue: number): PortfolioPerformance {
+export const calculatePortfolioPerformance = (initialInvestment: number,currentValue: number): PortfolioPerformance => {
     const profitOrLoss: number = currentValue - initialInvestment;
     const percentageChange: number = (profitOrLoss / initialInvestment) * 100;
     const performanceSummary: string = getPerformanceSummary(percentageChange, profitOrLoss);
@@ -27,7 +27,7 @@ export function calculatePortfolioPerformance(initialInvestment: number, current
         percentageChange,
         performanceSummary,
     };
-}
+};
 
 /**
  * Determines the performance summary message based on percentage change
@@ -42,13 +42,12 @@ const getPerformanceSummary = (percentageChange: number, profitOrLoss: number): 
         case percentageChange >= 10:
             return `Solid gain. Keep monitoring your investments.`;
         case percentageChange > 0:
-            return `Modest gain. your portfollio is growing slowly.`;
-        case percentageChange == 0:
-            return `No change. your portfolio is holding steady.`;
+            return `Modest gain. Your portfolio is growing slowly.`;
+        case percentageChange === 0:
+            return `No change. Your portfolio is holding steady.`;
         case percentageChange >= -10:
             return `Minor loss. Stay calm and review your options.`;
         default:
-            return `Significant loss. Review your portfolio stratergy.`;            
-        
-        }
+            return `Significant loss. Review your portfolio strategy.`;
+    }
 };

@@ -28,15 +28,13 @@ app.get("/api/v1/health", (req, res) => {
 });
 
 app.get("/api/v1/portfolio/performance", (req, res) => {
-    const { initialInvestment, currentValue } = req.body;
+    const { initialInvestment, currentValue } = req.query;
 
-    if (typeof initialInvestment !== "number" || typeof currentValue !== "number") {
-        return res.status(400).json({
-            error: "initialInvestment and currentValue must be numbers.",
-        });
-    }
+    const result = calculatePortfolioPerformance(
+        Number(initialInvestment),
+        Number(currentValue)
+    );
 
-    const result = calculatePortfolioPerformance(initialInvestment, currentValue);
     res.json(result);
 });
 

@@ -4,6 +4,20 @@ import { calculatePortfolioPerformance } from "../src/portfolio/portfolioPerform
 describe("calculatePortfolioPerformance - profit", () => {
     it("should calculate profit correctly", () => {
         // calculate portfolio performance with an initial investment of $1000 and current value of $1200
+        const result = calculatePortfolioPerformance(10000, 14000);
+
+        // assert profit, percentage change, and performance summary
+        expect(result.profitOrLoss).toBe(4000);
+        expect(result.percentageChange).toBe(40);
+        expect(result.performanceSummary).toBe(
+            "Excellent performance your investment are doing great"
+        );
+    });
+});
+
+describe("calculatePortfolioPerformance - profit", () => {
+    it("should calculate profit correctly", () => {
+        // calculate portfolio performance with an initial investment of $1000 and current value of $1200
         const result = calculatePortfolioPerformance(1000, 1200);
 
         // assert profit, percentage change, and performance summary
